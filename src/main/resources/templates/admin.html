@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="/fragments/commons::head"></head>
+
+
+<body>
+
+<header th:replace="/fragments/commons::nav"></header>
+<main role="main">
+
+    <div class="position-relative p-7 p-md-3 m-md-3 mt-0 text-center">
+        <div id="main" class="col-md-5 p-lg-5 mx-auto my-5">
+            <h1 class="display-4 font-weight-normal">Admin panel</h1>
+            <span>Изтрий потребител или добави админ!</span>
+
+        </div>
+
+        <div th:action="@{/admin}" th:object="${users}" class="col-xl-12">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Име и фамилия</th>
+                    <th scope="col">Потребилтеско име</th>
+                    <th scope="col">Роли</th>
+                    <th scope="col">Админ->Потребител</th>
+                    <th scope="col">Потребител->Админ</th>
+                    <th scope="col">Изтрий потребител</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="user : ${users}" th:object="${user}">
+
+                    <td th:text="*{fullName}"></td>
+                    <td th:text="*{username}"></td>
+
+                    <td th:each="role : ${user.roles}" th:object="${role}" th:text="*{getRole().name()}">
+                    </td>
+
+                    <td>
+                        <form th:action="@{/admin/{id}/demote-admin(id=*{id})}" th:method="PATCH" class="m-1">
+                            <input type="submit" class="btn btn-warning" value="Make User"/>
+                        </form>
+                    </td>
+                    <td>
+                        <form th:action="@{/admin/{id}/add-admin(id=*{id})}" th:method="PATCH" class="m-1">
+                            <input type="submit" class="btn btn-warning" value="Make Admin"/>
+                        </form>
+                    </td>
+                    <td>
+                        <form th:action="@{/admin/{id}(id=*{id})}" th:method="DELETE" class="m-1">
+                            <input type="submit" class="btn btn-danger" value="Delete"/>
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+<div th:replace="fragments/commons::footer" class="footer" id="footer">
+</div>
+
+</body>
+
+</html>

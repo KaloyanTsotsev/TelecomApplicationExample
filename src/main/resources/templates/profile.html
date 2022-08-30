@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/commons::head">
+</head>
+<body>
+<header th:replace="fragments/commons::nav">
+</header>
+<main role="main">
+    <div class="container" style="margin-top: 25px; margin-bottom: 25px;">
+        <div class="main-body">
+            <form th:method="get" th:action="@{/users/profile}" th:object="${user}">
+                <div class="row gutters-sm">
+                    <div class="col-md-3 mb-2">
+                        <div class="d-flex flex-column align-items-center text-center">
+                            <img th:src="'/images/'+*{gender.toLowerCase()}+'.png'" alt="Avatar" class="avatar">
+                            <div class="mt-3">
+                                <h4 th:text="*{fullName}"></h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Имейл</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <span th:text="*{email}"></span>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Адрес</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <span th:text="*{address}"></span>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Мобилни номера</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <tr th:each="orderPhone : ${user.orders}" th:object="${orderPhone}">
+                                            <th th:text="*{getPhoneNumber()}">No</th>
+                                        </tr>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-top: 50px">
+                                    <div class="col-sm-3">
+                                        <button type="button" class="btn btn-info">
+                                            <a th:href="@{/users/profile/{id}/edit-profile(id=*{id})}" style="color: #fff;">Редактирай</a></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    </div>
+</main>
+<div th:replace="fragments/commons::footer" class="footer" id="footer">
+</div>
+</body>
+
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/commons::head">
+</head>
+<body>
+<header th:replace="fragments/commons::nav">
+</header>
+<main role="main">
+    <div class="container" style="margin-top: 25px; margin-bottom: 25px;">
+        <div class="main-body">
+            <form th:action="@{/users/profile/{id}/edit-profile(id=*{id})}" th:method="patch" th:object="${user}">
+                <div class="input-group form-group">
+                    <div class="form-outline datepicker w-100">
+                        <label for="fullName" class="form-label font-weight-bold">Име и фамилия</label>
+                        <input name="fullName" required
+                               type="text"
+                               class="form-control form-control-lg"
+                               id="fullName"
+                               th:value="*{fullName}"
+                        />
+                    </div>
+                    <div class="form-outline datepicker w-100">
+                        <label for="username" class="form-label font-weight-bold">Потребилтеско име</label>
+                        <input name="username" required
+                               type="text"
+                               class="form-control form-control-lg"
+                               id="username"
+                               th:value="*{username}"
+                        />
+                    </div>
+                    <div class="form-outline datepicker w-100">
+                        <label for="email" class="form-label font-weight-bold">Имейл</label>
+                        <input name="email" required
+                               type="email"
+                               class="form-control form-control-lg"
+                               id="email"
+                               th:value="*{email}"
+                        />
+                    </div>
+                    <div class="form-outline datepicker w-100">
+                        <label for="address" class="form-label font-weight-bold">Адрес </label>
+                        <input name="address" required
+                               type="text"
+                               class="form-control form-control-lg"
+                               id="address"
+                               th:value="*{address}"/>
+                    </div>
+                    <div class="col-md-6 mb-4 ">
+                        <h6 class="mb-2 pb-1">Пол: </h6>
+                        <div class="form-check form-check-inline">
+                            <input
+                                    class="form-check-input"
+                                    type="radio"
+                                    name="inlineRadioOptions"
+                                    id="femaleGender"
+                                    value="male"
+                                    onclick="getValue(this)"
+                                    th:field="*{gender}"
+                            />
+                            <label class="form-check-label" for="maleGender">Мъж</label>
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                            <input
+                                    class="form-check-input"
+                                    type="radio"
+                                    name="inlineRadioOptions"
+                                    id="maleGender"
+                                    value="female"
+                                    onclick="getValue(this)"
+                                    th:field="*{gender}"
+                            />
+                            <label class="form-check-label" for="femaleGender">Жена</label>
+                        </div>
+                        <p class="invalid-feedback errors alert alert-danger">
+                            Моля изберете една от опциите.
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col col-md-4">
+                        <div class="button-holder d-flex">
+                            <input type="submit" class="btn btn-info btn-lg" value="Запази промените"/>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    </div>
+</main>
+<div th:replace="fragments/commons::footer" class="footer" id="footer">
+</div>
+</body>
+
+</html>

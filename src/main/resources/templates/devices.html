@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/commons::head">
+</head>
+
+<body>
+<header th:replace="fragments/commons::nav">
+</header>
+<main role="main">
+    <h1 class="text-center">Устройства</h1>
+    <div class="text-center" sec:authorize="hasRole('ADMIN')">
+        <a th:href="@{/devices/add-device}" class="btn btn-success">Добави</a>
+    </div>
+    <br/><br/>
+    <div>
+        <form th:action="@{/devices/all}">
+            Търси по име на устройстовто: <input type="text" name="keyword" id="keyword" size="30" th:value="${keyword}"
+                                                 required/>
+            &nbsp;
+            <input type="submit" value="Търси"/>
+            &nbsp;
+            <input type="button" value="Изчисти" id="btnClear" onclick="clearSearch()"/>
+        </form>
+        <br/><br/>
+        <div class="container-fluid justify-content-center">
+            <div class="row" style="margin: 40px;" th:action="@{/devices/all}" th:method="get">
+                <th:block th:if="${devices.size()>0}">
+                    <div class="device-list" th:each="device:${devices}" th:object="${device}">
+                        <div class="card" style="width: 18rem; margin: 15px">
+                            <img class="card-img-top" th:src="*{getFirstImageUrl()}" width="256" height="256"
+                                 alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title text-center" th:text="*{name}">Име на устройството</h5>
+                                <div class="card-text" style="font-weight: bold;">Цена: <span th:text="''+*{price} + ' лв.'"></span>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <div class="btn-group">
+                                    <a th:href="@{/devices/{id}/device-page(id=*{id})}" class="btn btn-success"
+                                       style="margin-right: 80px;">Детайли</a>
+                                        <form th:action="@{/devices/{id}(id=*{id})}" th:method="delete" sec:authorize="hasRole('ADMIN')">
+                                            <input type="submit" class="btn btn-warning" value="Изтрий"/>
+                                        </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </th:block>
+            </div>
+        </div>
+    </div>
+</main>
+<div th:replace="fragments/commons::footer" class="footer" id="footer">
+</div>
+<script type="text/javascript">
+    function clearSearch() {
+        window.location = "[[@{/devices/all}]]";
+    }
+</script>
+</body>
+
+</html>

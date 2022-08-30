@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/commons::head">
+</head>
+<body>
+<header th:replace="fragments/commons::nav">
+</header>
+    <main role="main">
+        <form class="text-center" th:action="@{/mobile-plans/{id}/edit-mobile-plan(id=*{id})}" th:method="patch"
+              th:object="${mobilePlanUpdateBindingModel}">
+            <h1>Редактирай план</h1>
+
+            <br> <br>
+            <label> Интернет:
+                <input th:field="*{internet}" th:errorclass="is-invalid" type="text" name="name" size="15"/>
+                <p class="errors alert alert-danger invalid-feedback">
+                    Интернет трябва да съдържа числа или неограничен!
+                </p>
+            </label> <br> <br>
+            <label>Име на плана:
+                <input th:field="*{name}" th:errorclass="is-invalid" type="text" name="internetCntry" size="15"/>
+                <p class="errors alert alert-danger invalid-feedback">
+                    Името не трябва да е празно поле!
+                </p>
+            </label> <br> <br>
+            <label>Минути за разговори:
+                <input th:field="*{minutes}" th:errorclass="is-invalid" type="text" name="callminsCntry" size="15"/>
+                <p class="errors alert alert-danger invalid-feedback">
+                    Минутите трябва да съдържа числа или неограничен!
+                </p>
+            </label> <br> <br>
+            <label> SMS и MMS:
+                <input th:field="*{sms}" th:errorclass="is-invalid" type="text" name="smsandmmsCntry" size="15"/>
+                <p class="errors alert alert-danger invalid-feedback">
+                    СМС трябва да съдържа числа или неограничен!
+                </p>
+            </label> <br> <br>
+            <label>Интернет в ЕС:
+                <input th:field="*{internetEU}" th:errorclass="is-invalid" type="text" name="internetEU" size="15"/>
+                <p class="errors alert alert-danger invalid-feedback">
+                    Интернет трябва да съдържа числа или неограничен!
+                </p>
+            </label> <br> <br>
+            <label> Минути за разговори в ЕС:
+                <input th:field="*{minutesEU}" th:errorclass="is-invalid" type="text" name="callminsEU" size="15"/>
+                <p class="errors alert alert-danger invalid-feedback">
+                    Минутите трябва да съдържа числа или неограничен!
+                </p>
+            </label> <br> <br>
+            <label>SMS и MMS в ЕС:
+                <input th:field="*{smsEU}" th:errorclass="is-invalid" type="text" name="smsandmmsEU" size="15"/>
+                <p class="errors alert alert-danger invalid-feedback">
+                    СМС трябва да съдържа числа или платени смс!
+                </p>
+            </label> <br> <br>
+            <label>Цена на плана:
+                <input th:field="*{price}" th:errorclass="is-invalid" type="text" name="price" size="15"/><span>лв.</span>
+                <p class="errors alert alert-danger invalid-feedback">
+                    Цената не трябва да е нула или празна!
+                </p>
+            </label> <br> <br>
+            <fieldset>
+                <legend>Допълнителни услуги</legend>
+                <div>
+                    <input type="checkbox" id="hbo" name="services" value="HBO-GO">
+                    <label for="hbo">HBO-GO</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="spotify" name="services" value="Spotify">
+                    <label for="spotify">Spotify</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="norcomCloud" name="services" value="NorcomCloud">
+                    <label for="norcomCloud">NorcomCloud</label>
+                </div>
+            </fieldset>
+            <div >
+                <div class="row">
+                    <div class="col col-md-4">
+                        <div class="button-holder d-flex">
+                            <input type="submit" class="btn btn-info btn-lg" value="Редактирай мобилен план"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </main>
+        <div th:replace="fragments/commons::footer" class="footer" id="footer">
+    </div>
+</body>
+
+</html>

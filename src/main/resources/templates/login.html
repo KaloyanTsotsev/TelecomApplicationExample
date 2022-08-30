@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/commons::head"></head>
+<body>
+<header th:replace="fragments/commons::nav">
+</header>
+    <main role="main">
+        <div class="container">
+            <div class="d-flex justify-content-center h-100">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="text-center">Вход</h3>
+                    </div>
+                    <div class="card-body">
+                        <form method="post" th:action="@{/users/login}">
+                            <p th:if="${bad_credentials}" class="errors alert alert-danger">
+                                Невалидни потребителско име и парола!
+                            </p>
+                            <div class="input-group form-group">
+                                <div class="form-outline datepicker w-100">
+                                    <label for="username" class="form-label font-weight-bold">Потребилтеско име</label>
+                                    <input name="username" required
+                                           type="text"
+                                           class="form-control form-control-lg"
+                                           id="username"
+                                           th:value="${username}"
+                                    />
+                                </div>
+                            </div>
+                            <div class="form-outline datepicker w-100">
+                                <label for="password" class="form-label font-weight-bold">Парола</label>
+                                <input name="password" required
+                                       type="password"
+                                       class="form-control form-control-lg"
+                                       id="password"
+
+                                />
+                            </div>
+
+
+                            <div class="row d-flex justify-content-center" style="margin-top: 10px">
+                                <input type="submit" value="Вход" class="btn btn-success login_btn" style="width: 100px; text-align:center;">
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="card-footer">
+                        <div class="d-flex justify-content-center">
+                            <a th:href="@{/users/register}">Нямате акаунт направете си сега?</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+<div th:replace="fragments/commons::footer">
+</div>
+</body>
+
+</html>

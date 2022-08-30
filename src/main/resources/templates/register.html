@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+
+<head th:replace="fragments/commons::head"></head>
+
+<script type="text/javascript">
+    function getValue(radio) {
+        switch (radio.value) {
+            case "male":
+                return "male";
+            case "female":
+                return "female";
+        }
+    }
+</script>
+<body class="body-main">
+<header th:replace="fragments/commons::nav">
+</header>
+<main role="main">
+    <section class="vh-100 gradient-custom">
+        <div class="container py-5 h-100">
+            <div class="row justify-content-center align-items-center h-100">
+                <div class="col-12 col-lg-9 col-xl-7">
+                    <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+                        <div class="card-body p-4 p-md-5">
+                            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Регистрация</h3>
+                            <form th:action="@{/users/register}" novalidate th:method="post"
+                                  th:object="${userRegisterBindingModel}">
+                                <div class="row">
+                                    <div class="col-md-6 mb-4">
+                                        <div class="form-outline">
+                                            <input th:field="*{fullName}" th:errorclass="is-invalid" required minlength="4" max="35"
+                                                   name="fullName" type="text" id="fullName"
+                                                   class="form-control form-control-lg"/>
+                                            <p class="invalid-feedback errors alert alert-danger">
+                                                Името трябва да сърдържа Име и фамилия и дължина поне 4 букви!
+                                            </p>
+                                            <label class="form-label" for="fullName">Име и фамилия</label>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-6 mb-4">
+                                        <div class="form-outline">
+                                            <input th:field="*{email}" th:errorclass="is-invalid" required minlength="9" max="40" name="email"
+                                                   type="text" id="email" class="form-control form-control-lg"/>
+                                            <p class="invalid-feedback errors alert alert-danger">
+                                                Моля въведете валиден имейл с дължина поне 9 символа.
+                                            </p>
+                                            <label class="form-label" for="email">Имейл</label>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 mb-4 d-flex align-items-center">
+                                        <div class="form-outline datepicker w-100">
+                                            <input th:field="*{username}" th:errorclass="is-invalid" name="username" required minlength="5"
+                                                   max="35"
+                                                   type="text"
+                                                   class="form-control form-control-lg"
+                                                   id="username">
+                                            <p class="invalid-feedback errors alert alert-danger">
+                                                Потребителското име трябва да е поне с дължина 5.
+                                            </p>
+                                            <label for="username" class="form-label">Потребилтеско име</label>
+                                        </div>
+                                    </div>
+                                        <div class="col-md-6 mb-4 ">
+                                            <h6 class="mb-2 pb-1">Пол: </h6>
+                                            <div class="form-check form-check-inline">
+                                                <input
+                                                        class="form-check-input"
+                                                        type="radio"
+                                                        name="inlineRadioOptions"
+                                                        id="maleGender"
+                                                        value="male"
+                                                        onclick="getValue(this)"
+                                                        th:field="*{gender}"
+                                                />
+                                                <label class="form-check-label" for="maleGender">Мъж</label>
+                                            </div>
+
+                                            <div class="form-check form-check-inline">
+                                                <input
+                                                        class="form-check-input"
+                                                        type="radio"
+                                                        name="inlineRadioOptions"
+                                                        id="femaleGender"
+                                                        value="female"
+                                                        onclick="getValue(this)"
+                                                        th:field="*{gender}"
+                                                />
+                                                <label class="form-check-label" for="femaleGender">Жена</label>
+                                            </div>
+                                            <p class="invalid-feedback errors alert alert-danger">
+                                                Моля изберете една от опциите.
+                                            </p>
+                                        </div>
+<!--                                    </form>-->
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <input th:field="*{address}" th:errorclass="is-invalid" required name="address" type="address" id="address"
+                                               class="form-control form-control-lg"/>
+                                        <p class="invalid-feedback errors alert alert-danger">
+                                            Адресът е задължитено поле.
+                                        </p>
+                                        <label class="form-label" for="address">Адрес</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 mb-4 pb-2">
+                                        <div class="form-outline">
+                                            <input th:field="*{password}" th:errorclass="is-invalid" required minlength="5" max="35"
+                                                   name="password" type="password" id="password"
+                                                   class="form-control form-control-lg"/>
+                                            <p class="invalid-feedback errors alert alert-danger">
+                                                Паролата трябва да е поне с дължина 5.
+                                            </p>
+                                            <label class="form-label" for="password">Парола</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-4 pb-2">
+                                        <div class="form-outline">
+                                            <input th:field="*{confirmPassword}" th:errorclass="is-invalid" required minlength="5" max="35"
+                                                   name="confirmPassword" type="password" id="confirmPassword"
+                                                   class="form-control form-control-lg"/>
+                                            <p class="invalid-feedback errors alert alert-danger">
+                                                Паролите не съвпадат!
+                                            </p>
+                                            <label class="form-label" for="confirmPassword">Повтори парола</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mt-4 pt-2">
+                                    <input class="btn btn-primary btn-lg" type="submit" value="Регистрирай"/>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+<div th:replace="fragments/commons::footer" class="footer" id="footer">
+</div>
+</body>
+
+</html>

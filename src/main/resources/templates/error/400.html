@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/fragments/commons::head"></head>
+<body>
+<header th:replace="fragments/commons::nav"></header>
+<main class="main-background">
+    <br>
+    <section class="d-flex mx-auto col-md-6 mt-5 pt-4 pb-1
+             text-white text-center justify-content-center
+             bg-opacity-75 bg-danger border-3 rounded-3 row">
+        <p class="fs-1">Заявката е неправилна</p>
+        <p class="fs-5">Помислете и заявете нова!</p>
+        <a class="main-link fs-3" th:href="@{/}">Върни се на начала страница</a>
+
+    </section>
+    <br>
+</main>
+<div th:replace="fragments/commons::footer" class="footer" id="footer">
+</div>
+</body>
+</html>

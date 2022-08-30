@@ -1,0 +1,40 @@
+
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/commons::head">
+
+</head>
+<body>
+<header th:replace="/fragments/commons::nav"></header>
+<main>
+
+        <div class="col-xl-12">
+            <table class="table table-dark">
+                <thead>
+                <tr>
+                    <th scope="col">Анономни рекуести</th>
+                    <th scope="col">Регистрирани рекуести</th>
+                    <th scope="col">Всички рекуести</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>
+                        <th:block th:text="${statistics.getAnonRequests()}"></th:block>
+                    </td>
+                    <td>
+                        <th:block th:text="${statistics.getAuthRequests()}"></th:block>
+                    </td>
+                    <td>
+                        <th:block th:text="${statistics.getTotalRequests()}"></th:block>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+</main>
+<div th:replace="fragments/commons::footer" class="footer" id="footer">
+</div>
+</body>
+</html>

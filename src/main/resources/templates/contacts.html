@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/commons::head">
+</head>
+
+<body>
+<header th:replace="fragments/commons::nav">
+</header>
+<main role="main">
+<!--    <form th:method="/contacts">-->
+        <div>
+            <div>
+                <div class="text-center">
+                    <h1>Кой сме ние?</h1>
+                    <div style="margin-left:40px; margin-right: 40px;">
+                        <span>Мобилен мрежов оператор, занимаващ се с предложение на устройства и планове с които да ги
+                            използвате!</span>
+                        <span>Фирмата Norcom Bulgaria е създадена през 2021 и нашата цел е да предоставяме най-добрите
+                            оферти на сегашни и бъдещи клиенти!
+                            Ако искате да ни намерите използвайте нашите контакти:
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid" style="margin:25px;">
+            <div class="mx-auto" style="width: 200px;">
+                <h1>Контакти</h1>
+                <div class="row">
+                    <div class="col-sm-18">
+                        <span style="font-weight:bold">Телефон: </span>
+                        <span style="display: inline; margin-left: 10px;">+359 88 777 6543</span>
+                    </div>
+                    <div class="col-sm-18">
+                        <span style="font-weight:bold">Адрес: </span>
+                        <span style="display: inline; margin-left: 10px;">ул.Резбарскa 420 (Скоро)</span>
+                    </div>
+                    <div class="col-sm-18">
+                        <span style="font-weight:bold">Имейл: </span>
+                        <span style="display: inline; margin-left: 10px;">norcom@gmail.com</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="margin-bottom: 25px;">
+            <div>
+                <div class="text-center">
+                    <h1 class="text-danger">Внимание!</h1>
+                    <div>
+                        <span style="font-weight: bolder;">Скоро отваряме и физически магазини ще се радваме да се видим
+                            там!</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+<!--    </form>-->
+
+</main>
+<div th:replace="fragments/commons::footer" class="footer" id="footer">
+</div>
+</body>
+
+</html>
